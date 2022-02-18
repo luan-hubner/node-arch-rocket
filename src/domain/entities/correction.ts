@@ -3,7 +3,7 @@ import { Entity } from "../../core/domain/Entity";
 interface CorrectionProps {
   grade: number;
   submissionId: string;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export class Correction extends Entity<CorrectionProps> {
@@ -12,7 +12,10 @@ export class Correction extends Entity<CorrectionProps> {
   }
 
   static create(props: CorrectionProps) {
-    const corretion = new Correction(props);
+    const corretion = new Correction({
+      ...props,
+      createdAt: props.createdAt ?? new Date(),
+    });
 
     return corretion;
   }
