@@ -34,4 +34,33 @@ describe("Create challenge submission use case", () => {
 
     expect(response).toBeTruthy();
   });
+
+  it("shouldn't be able to create a new challenge submission if challenge doesn't exists.", async () => {
+    const studentsRepository = new InMemoryStudentsRepository();
+    const challengesRepository = new InMemoryChallengesRepository();
+
+    const student = Student.create({
+      name: "Luan Hubner",
+      email: "luanhubner44@gmail.com",
+    });
+
+    const challenge = Challenge.create({
+      title: "Desafio Rocket",
+      instructionsUrl: "http://localhost",
+    });
+
+    studentsRepository.items.push(student);
+
+    const sut = new CreateChallengeSubmission(
+      studentsRepository,
+      challengesRepository
+    );
+
+    const response = await sut.execute({
+      studentId: student.id,
+      challengeId: challenge.id,
+    });
+
+    expect(response).toThrow("Challenge doesn't exists.");
+  });
 });
