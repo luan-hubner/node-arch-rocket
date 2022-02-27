@@ -1,7 +1,9 @@
-import { ChallengesRepository } from "../../src/application/repositories/ChallengesRepository";
-import { Challenge } from "../../src/domain/entities/challenge";
+import { ChallengesRepositoryContract } from "@src/application/repositories/contracts/ChallengesRepositoryContract";
+import { Challenge } from "@src/domain/entities/challenge";
 
-export class InMemoryChallengesRepository implements ChallengesRepository {
+export class InMemoryChallengesRepository
+  implements ChallengesRepositoryContract
+{
   public items: Challenge[] = [];
 
   async findById(id: string): Promise<Challenge | null> {

@@ -1,6 +1,6 @@
-import { Submission } from "../../../domain/entities/submission";
-import { StudentsRepository } from "../../repositories/StudentsRepository";
-import { ChallengesRepository } from "../../repositories/ChallengesRepository";
+import { Submission } from "@src/domain/entities/submission";
+import { StudentsRepositoryContract } from "@src/application/repositories/contracts/students-repository-contract";
+import { ChallengesRepositoryContract } from "@src/application/repositories/contracts/challenges-repository-contract";
 
 interface CreateChallengeSubmissionRequest {
   studentId: string;
@@ -9,8 +9,8 @@ interface CreateChallengeSubmissionRequest {
 
 export class CreateChallengeSubmission {
   constructor(
-    private studentsRepository: StudentsRepository,
-    private challengesRepository: ChallengesRepository
+    private studentsRepository: StudentsRepositoryContract,
+    private challengesRepository: ChallengesRepositoryContract
   ) {}
 
   async execute({ studentId, challengeId }: CreateChallengeSubmissionRequest) {

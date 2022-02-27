@@ -1,6 +1,6 @@
 import { Entity } from "../../core/domain/Entity";
 
-interface CorrectionProps {
+export interface CorrectionProps {
   grade: number;
   submissionId: string;
   createdAt?: Date;

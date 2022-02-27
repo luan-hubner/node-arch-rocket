@@ -1,7 +1,9 @@
-import { SubmissionsRepository } from "../../src/application/repositories/SubmissionsRepository";
-import { Submission } from "../../src/domain/entities/submission";
+import { SubmissionsRepositoryContract } from "@src/application/repositories/contracts/SubmissionsRepositoryContract";
+import { Submission } from "@src/domain/entities/submission";
 
-export class InMemorySubmissionsRepository implements SubmissionsRepository {
+export class InMemorySubmissionsRepository
+  implements SubmissionsRepositoryContract
+{
   public items: Submission[] = [];
 
   async findById(id: string): Promise<Submission | null> {

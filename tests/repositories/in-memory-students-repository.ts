@@ -1,7 +1,7 @@
-import { StudentsRepository } from "../../src/application/repositories/StudentsRepository";
-import { Student } from "../../src/domain/entities/student";
+import { StudentsRepositoryContract } from "@src/application/repositories/contracts/StudentsRepositoryContract";
+import { Student } from "@src/domain/entities/student";
 
-export class InMemoryStudentsRepository implements StudentsRepository {
+export class InMemoryStudentsRepository implements StudentsRepositoryContract {
   public items: Student[] = [];
 
   async findById(id: string): Promise<Student | null> {
